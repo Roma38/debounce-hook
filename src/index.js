@@ -8,8 +8,15 @@ import "./styles.css";
 // the value has not changed in delay ms
 // you may change code only in function below
 // also you can import whatever you need
+let timeoutId;
+
 function useDebounce(value, delay) {
-  return value;
+  const [delayedValue, setDelayedValue] = useState(value);
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+    setDelayedValue(value);
+  }, delay);
+  return delayedValue;
 }
 
 function App() {
